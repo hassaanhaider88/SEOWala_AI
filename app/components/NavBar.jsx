@@ -1,4 +1,8 @@
 "use client";
+import { TbArrowsCross } from "react-icons/tb";
+
+import { BiMenuAltRight } from "react-icons/bi";
+
 import Link, { useLinkStatus } from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -10,28 +14,14 @@ const NavBar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  const ref = useRef(null);
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(ref.current.scrollTop > 10);
-    };
-    ref.current.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div ref={ref} className="h-88 md:h-64">
-      <p className="w-10 h-125"></p>
+    <div>
       <nav
-        className={`fixed top-0 left-0  w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${
-          isScrolled
-            ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4"
-            : "py-4 md:py-6"
-        }`}
+        className={`sticky top-0 my-3 left-0  w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50  shadow-md backdrop-blur-lg py-3 md:py-4}`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -44,16 +34,10 @@ const NavBar = () => {
             <Link
               key={i}
               href={link.path}
-              className={`group flex flex-col gap-0.5 ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}
+              className={`group flex flex-col gap-0.5 }`}
             >
               {link.name}
-              <div
-                className={`${
-                  isScrolled ? "bg-gray-700" : "bg-white"
-                } h-0.5 w-0 group-hover:w-full transition-all duration-300`}
-              />
+              <div className="bg-gray-300 h-0.5 w-0 group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
         </div>
@@ -65,33 +49,35 @@ const NavBar = () => {
           </Link>
           <button
             onClick={() => router.push("/sign-up")}
-            className={`px-8 py-2.5 rounded-full ml-4 transition-all duration-500 ${
-              isScrolled ? "text-white bg-black" : "bg-white text-black"
-            }`}
+            className="px-8 py-2.5 rounded-full ml-4 transition-all duration-500 bg-white text-black"
           >
             Sign Up
           </button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-3 md:hidden">
-          <svg
+        <div className="flex cursor-pointer items-center gap-3 md:hidden">
+          <BiMenuAltRight
+            size={28}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`h-6 w-6 cursor-pointer ${isScrolled ? "invert" : ""}`}
+          />
+          {/* <svg
+           
+            className="h-6 w-6 cursor-pointer"
             fill="none"
-            stroke="currentColor"
+            stroke="white"
             strokeWidth="2"
             viewBox="0 0 24 24"
           >
             <line x1="4" y1="6" x2="20" y2="6" />
             <line x1="4" y1="12" x2="20" y2="12" />
             <line x1="4" y1="18" x2="20" y2="18" />
-          </svg>
+          </svg> */}
         </div>
 
         {/* Mobile Menu */}
         <div
-          className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${
+          className={`fixed top-0 left-0 w-full h-screen bg-black text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-200 transition-all duration-500 ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -99,16 +85,7 @@ const NavBar = () => {
             className="absolute top-4 right-4"
             onClick={() => setIsMenuOpen(false)}
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <TbArrowsCross size={28} />
           </button>
 
           {navLinks.map((link, i) => (
@@ -117,13 +94,11 @@ const NavBar = () => {
             </Link>
           ))}
 
-          <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-            New Launch
-          </button>
+          <Link href="/log-in">Log in</Link>
 
           <button
             onClick={() => router.push("/sign-up")}
-            className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500"
+            className="bg-white text-black px-8 py-2.5 rounded-full transition-all duration-500"
           >
             Sign Up
           </button>
