@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+button {
+  cursor: pointer;
+}
+button:hover {
+  scale: 0.95;
+  transition: ease-in-out;
+  animation-duration: 120s;
+}
+
+button:active{
+   scale: 1.04;
+  transition: ease-in-out;
+  animation-duration: 120s;
+}
