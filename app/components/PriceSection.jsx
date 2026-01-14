@@ -78,15 +78,19 @@ const PriceSection = () => {
                 )}
                 <div
                   key={index}
-                  className={`rounded-3xl p-6 bg-white ${
+                  className={`rounded-3xl text-white p-6  ${
                     !plan.mostPopular
-                      ? "border border-neutral-200 hover:shadow-lg transition-shadow"
-                      : ""
+                      ? "border bg-linear-to-tl from-[#686868] via-[#302f2f9c] to-[#00000081] border-neutral-200 hover:shadow-lg transition-shadow"
+                      : "bg-white"
                   }`}
                 >
-                  <h3 className="text-neutral-700 text-sm mb-6">{plan.name}</h3>
+                  <h3 className="font-semibold text-sm mb-6">{plan.name}</h3>
                   <div className="flex items-baseline gap-1 mb-8">
-                    <span className="text-[28px] text-neutral-900">
+                    <span
+                      className={`text-4xl ${
+                        !plan.mostPopular ? "text-white" : "text-[#686868]"
+                      }`}
+                    >
                       {isYearly
                         ? `$${plan.pricing - Math.round(plan.pricing * 10.2)}`
                         : `$${plan.pricing}`}
@@ -95,18 +99,24 @@ const PriceSection = () => {
                       / {isYearly ? "year" : "month"}
                     </span>
                   </div>
-                  <ul className="space-y-4 mb-8">
+                  <ul
+                    className={`space-y-4 mb-8 ${
+                      !plan.mostPopular ? "text-white" : "text-[#686868]"
+                    }`}
+                  >
                     {plan.features.map((feature, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-3 text-sm text-neutral-600"
-                      >
-                        <MdVerified size={22} color="#686868"/>
+                      <li key={i} className="flex items-center gap-3 text-sm">
+                        <MdVerified
+                          size={22}
+                          color={
+                            !plan.mostPopular ? "text-white" : "text-[#686868]"
+                          }
+                        />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full cursor-pointer py-3 rounded-full bg-linear-to-r from-[#686868] to-[#686868]/70 text-white text-sm hover:opacity-95 transition-opacity">
+                  <button className="w-full cursor-pointer py-3 rounded-full bg-linear-to-r from-[#686868] to-[#686868a4] duration-200 text-white text-sm hover:opacity-95 transition-opacity">
                     Get started
                   </button>
                 </div>
