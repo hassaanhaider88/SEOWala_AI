@@ -1,4 +1,7 @@
 "use client";
+
+import { MdVerified } from "react-icons/md";
+
 import React from "react";
 import { AiTwotoneStar } from "react-icons/ai";
 import pricingData from "../Data/Price";
@@ -64,12 +67,12 @@ const PriceSection = () => {
                 key={index}
                 className={
                   plan.mostPopular
-                    ? "bg-linear-to-r from-[#FF861C] to-[#FFDBC4] rounded-3xl p-2 shadow-xl hover:shadow-lg transition-shadow"
+                    ? "bg-linear-to-r from-[#686868] to-[#FFDBC4] rounded-3xl p-2 shadow-xl hover:shadow-lg transition-shadow"
                     : ""
                 }
               >
                 {plan.mostPopular && (
-                  <p className="text-center text-orange-700 text-sm py-1.5">
+                  <p className="text-center text-[#686868] text-lg py-1.5">
                     Popular
                   </p>
                 )}
@@ -98,26 +101,12 @@ const PriceSection = () => {
                         key={i}
                         className="flex items-center gap-3 text-sm text-neutral-600"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-circle-check-icon lucide-circle-check"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="m9 12 2 2 4-4" />
-                        </svg>
+                        <MdVerified size={22} color="#686868"/>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full cursor-pointer py-3 rounded-full bg-linear-to-r from-[#FF5804] to-[#FF8D28]/70 text-white text-sm hover:opacity-95 transition-opacity">
+                  <button className="w-full cursor-pointer py-3 rounded-full bg-linear-to-r from-[#686868] to-[#686868]/70 text-white text-sm hover:opacity-95 transition-opacity">
                     Get started
                   </button>
                 </div>
