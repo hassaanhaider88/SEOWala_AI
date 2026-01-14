@@ -7,6 +7,7 @@ import SEORetsults from "./components/SEORetsults";
 import PriceSection from "./components/PriceSection";
 import TestimonialSection from "./components/TestimonialSection";
 import FAQsSection from "./components/FAQsSection";
+import Footer from "./components/Footer";
 
 const HomePage = () => {
   return (
@@ -21,12 +22,12 @@ const HomePage = () => {
         <TrustedBrand />
         <TrustedBrand />
       </div>
-      <SEOToolsGrid/>
-      <SEORetsults/>
-      <PriceSection/>
-      <TestimonialSection/>
-      <FAQsSection/>
-
+      <SEOToolsGrid />
+      <SEORetsults />
+      <PriceSection />
+      <TestimonialSection />
+      <FAQsSection />
+      <Footer />
     </>
   );
 };
