@@ -8,9 +8,9 @@ const TestimonialSection = () => {
     <div className="min-h-screen p-6 md:p-12 text-white w-full ">
       <div>
         <div className="py-2 px-4 shadow-2xl rounded-4xl bg-gray-950 w-fit flex gap-3 items-center font-semibold">
-          <AiTwotoneStar size={25} /> <p>SEO Tools</p>
+          <AiTwotoneStar size={25} /> <p>Testimonials</p>
         </div>
-        <h1 className="mb-6 text-white capitalize font-medium text-3xl sm:text-7xl mt-4">
+        <h1 className="mb-6  text-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#333232] capitalize  font-medium text-3xl sm:text-8xl text-nowrap tracking-tight mt-4">
           SEO Tools that <br /> deliver real results
         </h1>
         <p className="my-5 text-lg text-gray-400 font-medium">

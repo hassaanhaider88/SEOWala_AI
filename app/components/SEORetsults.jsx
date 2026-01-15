@@ -9,10 +9,10 @@ const SEORetsults = () => {
     <div className="seoResults flex w-full text-white h-screen bg-linear-to-r from-[#000000e0] to-[#000000e0] via-[#ffffff57]   md:flex-row flex-col overflow-hidden">
       <div className="Content max-w-full  md:w-[70%] p-4 md:p-12 ">
         <div className="py-2 px-4 shadow-2xl rounded-4xl bg-gray-950 w-fit flex gap-3 items-center font-semibold">
-          <AiTwotoneStar size={25} /> <p>SEO Tools</p>
+          <AiTwotoneStar size={25} /> <p>SEO Results</p>
         </div>
-        <h1 className="text-white capitalize mb-4 font-medium text-3xl sm:text-8xl text-nowrap mt-3">
-          proven seo retsults <br /> you can trust
+        <h1 className="mb-6  text-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#a0a0a0]  font-medium text-3xl sm:text-8xl capitalize text-nowrap tracking-tight mt-4">
+          Proven seo retsults <br /> you can trust
         </h1>
         <p className="my-5 text-lg text-gray-400 font-medium">
           Join thousands of satisfied users who have boosted their online sales.{" "}

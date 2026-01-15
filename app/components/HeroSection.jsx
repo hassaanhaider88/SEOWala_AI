@@ -17,7 +17,7 @@ const HeroSection = () => {
           </div>
           <p className="pr-3">Get Pro in just 10$ with 30% Offf</p>
         </div>
-        <h1 className="mb-6 text-white font-medium text-3xl sm:text-7xl mt-4">
+        <h1 className="mb-6  text-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#333232]  font-medium text-3xl sm:text-8xl text-nowrap tracking-tight mt-4">
           Boost Your <br /> website&#39;s SEO
         </h1>
         <p className="my-5 text-lg text-gray-400 font-medium">

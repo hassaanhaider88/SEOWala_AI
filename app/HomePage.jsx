@@ -15,9 +15,9 @@ const HomePage = () => {
       <NavBar />
       <HeroSection />
       <div
-        id="BgBlurry"
-        className="w-full overflow-hidden gap-10 flex flex-nowrap"
+        className="w-full relative py-10 h-[400x] overflow-x-hidden overflow-y-auto gap-10  flex justify-center items-center flex-nowrap"
       >
+        <div className="bg-[#333333cb] w-full h-full -top-10  blur-2xl absolute"/>
         <TrustedBrand />
         <TrustedBrand />
         <TrustedBrand />

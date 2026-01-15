@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const NavBar = () => {
   const navLinks = [
     { name: "Resourses", path: "/resourses" },
-    { name: "Price", path: "/price" },
+    { name: "Price", path: "#price" },
     { name: "Support", path: "/support" },
     { name: "Contact", path: "/contact" },
   ];

@@ -13,7 +13,7 @@ const FAQsSection = () => {
         <div className="py-2 px-4 shadow-2xl rounded-4xl bg-gray-950 w-fit flex gap-3 items-center font-semibold">
           <AiTwotoneStar size={25} /> <p>FAQs</p>
         </div>
-        <h1 className="text-white capitalize mb-4 font-medium text-3xl sm:text-7xl  mt-3">
+        <h1 className="mb-6  text-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#333232] capitalize  font-medium text-3xl sm:text-8xl text-nowrap tracking-tight mt-4">
           your questions <br /> Answers
         </h1>
         <p className="my-5 text-lg text-gray-400 font-medium">

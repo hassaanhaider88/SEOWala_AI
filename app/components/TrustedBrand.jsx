@@ -1,6 +1,6 @@
 const TrustedBrand = () => {
-  return (
-    <div className="marquee-inner gap-10 flex flex-nowrap mb-10 items-center justify-evenly w-full  max-md:px-2">
+  return ( 
+    <div className="marquee-inner h-full   gap-10 flex flex-nowrap mb-10 items-center justify-evenly w-full  max-md:px-2">
       <svg
         width="90"
         height="32"

@@ -50,7 +50,20 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="BigText w-full text-center text-[250px] text-[#ACACAC] font-bold flex gap-1 justify-center items-center">SEO<p className="text-white">WALA</p></div>
+      <div className="BigText tracking-tighter w-full text-center text-[250px] text-[#ACACAC] font-bold flex gap-1 justify-center items-center">
+        <p
+          className="font-bold text-text-[#ACACAC]"
+          style={{ "-webkit-textStroke": "3px white" }}
+        >
+          SEO{" "}
+        </p>
+        <h1
+          className="font-bold text-transparent"
+          style={{ "-webkit-textStroke": "2px white" }}
+        >
+          WALA
+        </h1>
+      </div>
     </footer>
   );
 }
