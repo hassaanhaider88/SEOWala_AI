@@ -50,10 +50,10 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="BigText tracking-tighter w-full text-center text-[250px] text-[#ACACAC] font-bold flex gap-1 justify-center items-center">
+      <div className="BigText  tracking-tighter w-full text-center text-[250px]  font-bold flex gap-1 justify-center items-center">
         <p
-          className="font-bold text-text-[#ACACAC]"
-          style={{ "-webkit-textStroke": "3px white" }}
+          className="font-bold ext-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#333232]"
+          style={{ "-webkit-textStroke": "3px #D3D3D3" }}
         >
           SEO{" "}
         </p>
