@@ -1,17 +1,44 @@
 "use client";
+import { userDataContext } from "../../store/UserDataContext";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 const SignUpPage = () => {
+  let { userData, setUserData } = useContext(userDataContext);
+
   const [InputData, setInputData] = useState({
     name: "",
     email: "",
     password: "",
     acceptTerms: false,
   });
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(InputData);
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: InputData.name,
+        email: InputData.email,
+        password: InputData.password,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.success) {
+      localStorage.setItem("token", data.token);
+      setUserData({
+        name: data.user.name,
+        email: data.user.email,
+        isPro: data.user.isPro,
+        token: data.token,
+      });
+      
+    } else {
+      alert(data.message);
+    }
   };
   return (
     <div className="w-full max-h-screen py-10 flex justify-center items-center">
