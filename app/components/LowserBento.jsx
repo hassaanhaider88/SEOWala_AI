@@ -7,6 +7,23 @@ import Image from "next/image";
 import React from "react";
 
 const LowserBento = () => {
+  const WebSiteInfoWithViews = [
+    {
+      name: "HMK CodeWeb",
+      views: "1.4K Views",
+      url: "www.hmkcode.com",
+    },
+    {
+      name: "Hassaan Haider",
+      views: "2.3K Views",
+      url: "www.hassaanhaider.com",
+    },
+    {
+      name: "SEOWala",
+      views: "3.4K Views",
+      url: "www.seowala.com",
+    },
+  ];
   return (
     <div className="w-full md:flex-row flex-col flex gap-5 py-2  font-semibold">
       <div
@@ -32,30 +49,28 @@ const LowserBento = () => {
         <p className="text-xl text-gray-200">Search Console</p>
       </div>
       <div className="GraphDiv h-75  rounded-2xl relative py-3 bg-linear-to-t to-[#4E504E] via-black from-gray-500 w-full md:w-[70%]">
-        {Array(3)
-          .fill(0)
-          .map((_, indx) => {
-            return (
-              <div
-                key={indx}
-                style={{
-                  bottom: `${indx * 80}px`,
-                  right: `${indx * 60}px`,
-                  rotate: `-${(indx + 1) * 5}deg`,
-                }}
-                className="w-75 py-3 bottom-2 mb-5 absolute flex justify-between items-center px-4 text-black bg-white rounded-xl"
-              >
-                <div>
-                  <p className="text-gray-700">www.hmkcode.com</p>
-                  <p className="text-xl text-gray-900">HMKCodeWeb</p>
-                </div>
-                <div className="flex flex-col justify-center items-center gap-1">
-                  <BsEyeFill />
-                  <p className="text-right">1.4K Views</p>
-                </div>
+        {WebSiteInfoWithViews.map((site, indx) => {
+          return (
+            <div
+              key={indx}
+              style={{
+                bottom: `${indx * 80}px`,
+                right: `${indx * 60}px`,
+                rotate: `-${(indx + 1) * 5}deg`,
+              }}
+              className="w-75 py-3 bottom-2 mb-5 absolute flex justify-between items-center px-4 text-black bg-white rounded-xl"
+            >
+              <div>
+                <p className="text-gray-700">{site.url}</p>
+                <p className="text-xl text-gray-900">{site.name}</p>
               </div>
-            );
-          })}
+              <div className="flex flex-col justify-center items-center gap-1">
+                <BsEyeFill />
+                <p className="text-right">{site.views}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

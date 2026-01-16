@@ -61,9 +61,9 @@ const NavBar = () => {
 
       {/* Desktop Right */}
       <div className="hidden md:flex items-center gap-4">
-        <Link href="/log-in">Log in</Link>
+        <Link href="/login">Log in</Link>
         <Link
-          href="/sign-up"
+          href="/signup"
           className="ml-4 rounded-full bg-white px-8 py-2.5 text-black transition-all duration-500"
         >
           Sign Up
@@ -104,12 +104,12 @@ const NavBar = () => {
         ))}
 
         <ServicesMenu />
-        <Link href="/log-in" onClick={() => setIsMenuOpen(false)}>
+        <Link href="/login" onClick={() => setIsMenuOpen(false)}>
           Log in
         </Link>
 
         <Link
-          href="/sign-up"
+          href="/signup"
           onClick={() => setIsMenuOpen(false)}
           className="rounded-full bg-white px-8 py-2.5 text-black"
         >

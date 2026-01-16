@@ -1,3 +1,4 @@
+import { AiTwotoneStar } from "react-icons/ai";
 /* eslint-disable @next/next/no-img-element */
 import { BsStar } from "react-icons/bs";
 import React from "react";
@@ -52,7 +53,7 @@ const UpperBento = () => {
                   .fill(0)
                   .map((_, index) => (
                     <span key={index}>
-                      <BsStar />
+                      <AiTwotoneStar color="gold" size={16} />
                     </span>
                   ))}
               </div>
@@ -72,7 +73,7 @@ const UpperBento = () => {
                   .fill(0)
                   .map((_, index) => (
                     <span key={index}>
-                      <BsStar />
+                      <AiTwotoneStar color="gold" size={16} />
                     </span>
                   ))}
               </div>
@@ -84,7 +85,7 @@ const UpperBento = () => {
         <div className="w-full h-full absolute top-0 left-0 bg-black/35 hover:bg-black/70 duration-200 translate-all" />
         <img
           className="w-full  z-50 h-full object-cover"
-          src="https://i.pinimg.com/originals/60/00/36/60003611f4524c47e495ad012f444459.jpg"
+          src="https://i.pinimg.com/videos/thumbnails/originals/10/cc/aa/10ccaa6565b71f0ea741c98cfb0503bf.0000000.jpg"
           alt=""
         />
       </div>
