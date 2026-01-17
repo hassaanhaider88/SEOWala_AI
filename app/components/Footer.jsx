@@ -61,7 +61,7 @@ function Footer() {
           className="font-bold text-transparent"
           style={{ "-webkit-textStroke": "2px white" }}
         >
-         Vion
+          Vion
         </h1>
       </div>
     </footer>

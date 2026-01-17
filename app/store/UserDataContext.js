@@ -16,7 +16,7 @@ export const UseUserContext = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       const data = await getUserByToken();
-      if (data.success) {
+      if (data?.success) {
         setUserData({
           name: data.user.name,
           email: data.user.email,

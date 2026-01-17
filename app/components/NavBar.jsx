@@ -11,7 +11,8 @@ import { userDataContext } from "../store/UserDataContext";
 import { useRouter } from "next/navigation";
 
 const NavBar = () => {
-  const router = useRouter()
+  const router = useRouter();
+
   const { userData, setUserData } = useContext(userDataContext);
   const [IsUserLogin, setIsUserLogin] = useState(false);
 
@@ -26,7 +27,7 @@ const NavBar = () => {
   const navLinks = [
     { name: "Price", path: "#price" },
     { name: "Support", path: "/support" },
-    { name: "Contact", path: "/contact" },
+    { name: "About Us", path: "/about" },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +41,6 @@ const NavBar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   return (
     <nav
