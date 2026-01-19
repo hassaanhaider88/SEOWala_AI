@@ -29,28 +29,29 @@ const ServicesMenu = () => {
     },
   ];
   const handleUserRirectToSerives = (service) => {
-    const services = service;
-    console.log(servicesArray[services]);
-    if (service == "YT Video SEO") {
-      if (userData.name == "" || null || undefined) {
-        alert("please login first");
-      } else if (!userData.isPro) {
-        alert("Please Get Pro Plan First!!");
-      } else {
-        router.push("/yt-video-seo");
-      }
-    } else if (service == "Media Post") {
-      if (userData.name == "" || null || undefined) {
-        alert("please login first");
-      } else if (!userData.isPro) {
-        alert("Please Get Pro Plan First!!");
-      } else {
-        router.push("/media-post");
-      }
-    } else if (service == "Meta Tags") {
-      router.push("/meta-tags");
+    console.log(userData);
+    if (userData.name === "") {
+      alert("Please Login First");
+      router.push("/");
+      return;
     } else {
-      router.push("/keyword-gens");
+      if (service == "YT Video SEO") {
+        if (!userData.isPro) {
+          alert("Please Get Pro Plan First!!");
+        } else {
+          router.push("/yt-video-seo");
+        }
+      } else if (service == "Media Post") {
+        if (!userData.isPro) {
+          alert("Please Get Pro Plan First!!");
+        } else {
+          router.push("/media-post");
+        }
+      } else if (service == "Meta Tags") {
+        router.push("/meta-tags");
+      } else {
+        router.push("/keyword-gens");
+      }
     }
   };
   return (

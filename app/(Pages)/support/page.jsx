@@ -51,20 +51,19 @@ const Supportpage = () => {
           alt=""
         />
       </div>
-      <div className="Form px-5 md:px-10 bg-red-300 w-full  md:w-1/2">
-        <form
-          onSubmit={handleSubmit}
-          className="grid   mx-auto mr-5 text-slate-500 w-full"
-        >
-          <h1 className="text-4xl bg-red-700 text-green-700 font-semibold">
-            Need Support?
-          </h1>
-          <p className="text-md mt-1 font-semibold text-gray-700">
+      <div className="Form px-5 md:px-10  w-full  md:w-1/2">
+        <div>
+          <h1 className="text-4xl  font-semibold">Need Support?</h1>
+          <p className="text-md mt-2 font-semibold text-gray-700">
             Contact Us if you need futher assistance!
           </p>
-
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="grid  my-10 mx-auto text-slate-500 w-full"
+        >
           <div>
-            <p className="mb-2 mt-5 font-medium">Your name</p>
+            <p className="mb-2 font-medium">Your name</p>
             <div className="flex rounded-4xl  items-center px-5 my-2  overflow-hidden border border-slate-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +128,7 @@ const Supportpage = () => {
               name="message"
               rows="6"
               placeholder="Enter your message"
-              className="focus:border-pink-500 resize-none w-full p-3 bg-transparent outline-none rounded-2xl overflow-hidden border border-slate-700"
+              className=" resize-none w-full p-3 bg-transparent outline-none rounded-2xl overflow-hidden border border-slate-700"
               required
               onChange={handleChange}
               value={FormData.message}
@@ -137,7 +136,7 @@ const Supportpage = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-green-300 flex items-center gap-2  text-white px-10 py-3 rounded-full"
+            className="w-max bg-gray-400 duration-200 justify-center r flex items-center gap-2  text-white px-10 py-3 rounded-full"
           >
             Submit
           </button>
