@@ -32,7 +32,7 @@ function Footer() {
     >
       <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-gray-500/30 pb-6">
         <div className="md:max-w-96">
-          <h1 className="text-2xl font-semibold text-gray-400">TabVion.com</h1>
+          <h1 className="text-2xl font-semibold text-gray-400">SEOWala.com</h1>
           <p className="mt-6 text-sm">
             All Your Sites. One SEO Dashboard. Real-Time SEO Testing with Google
             Search Console Data
@@ -75,13 +75,13 @@ function Footer() {
           className="font-bold ext-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#333232]"
           style={{ "-webkitTextStroke": "3px #D3D3D3" }}
         >
-          TAG{" "}
+          SEO{" "}
         </p>
         <h1
           className="font-bold text-transparent"
           style={{ "-webkiTextStroke": "2px white" }}
         >
-          Vion
+          WALA
         </h1>
       </div>
     </footer>

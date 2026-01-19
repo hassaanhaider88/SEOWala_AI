@@ -1,11 +1,17 @@
-'use client'
-import React, { useState } from 'react';
-import { FiHome, FiGlobe, FiFileText, FiPaperclip, FiSend, FiChevronDown } from 'react-icons/fi';
-import { HiSparkles } from 'react-icons/hi2';
-
+"use client";
+import React, { useState } from "react";
+import {
+  FiHome,
+  FiGlobe,
+  FiFileText,
+  FiPaperclip,
+  FiSend,
+  FiChevronDown,
+} from "react-icons/fi";
+import { HiSparkles } from "react-icons/hi2";
 
 const FlyPerplex = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <div className="flex h-screen bg-black text-white font-sans">
@@ -13,8 +19,7 @@ const FlyPerplex = () => {
       <div className="w-80 bg-zinc-950 border-r border-zinc-800 flex flex-col">
         {/* Logo */}
         <div className="p-6 flex items-center gap-3">
-          <HiSparkles className="w-6 h-6 text-white" />
-          <span className="text-lg font-medium">Flyperplex</span>
+          <span className="text-lg font-medium">SEOWala</span>
         </div>
 
         {/* New Chat Button */}
@@ -44,7 +49,7 @@ const FlyPerplex = () => {
         </nav>
 
         {/* Upgrade Section */}
-        <div className="p-4 m-4 bg-gradient-to-br from-pink-500/10 to-orange-500/10 border border-pink-500/20 rounded-xl">
+        <div className="p-4 m-4 bg-linear-to-br from-pink-500/10 to-orange-500/10 border border-pink-500/20 rounded-xl">
           <h3 className="text-sm font-semibold mb-1">Upgrade to premium</h3>
           <p className="text-xs text-zinc-400 mb-3">Enjoy premium benefits</p>
           <button className="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
@@ -63,7 +68,7 @@ const FlyPerplex = () => {
           </div>
           <div className="flex items-center gap-3">
             <button className="w-8 h-8 rounded-full hover:bg-zinc-800 flex items-center justify-center">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-medium">
+              <div className="w-8 h-8 rounded-full bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-medium">
                 U
               </div>
             </button>
@@ -76,9 +81,14 @@ const FlyPerplex = () => {
           {/* Welcome Text */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-light mb-3">
-              Welcome to <span className="font-semibold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">FlyPerplex</span>
+              Welcome to{" "}
+              <span className="font-semibold bg-linear-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
+                FlyPerplex
+              </span>
             </h1>
-            <p className="text-zinc-400 text-lg">Your personalized flight assistant.</p>
+            <p className="text-zinc-400 text-lg">
+              Your personalized flight assistant.
+            </p>
           </div>
 
           {/* Suggestion Cards */}
@@ -88,7 +98,9 @@ const FlyPerplex = () => {
                 <HiSparkles className="w-4 h-4 text-white" />
               </div>
               <h3 className="text-sm font-medium mb-1.5">Where to next?</h3>
-              <p className="text-xs text-zinc-500">Show me the cheapest flights to London next week.</p>
+              <p className="text-xs text-zinc-500">
+                Show me the cheapest flights to London next week.
+              </p>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:bg-zinc-800 transition-colors cursor-pointer">
@@ -96,15 +108,21 @@ const FlyPerplex = () => {
                 <HiSparkles className="w-4 h-4 text-white" />
               </div>
               <h3 className="text-sm font-medium mb-1.5">Flight updates</h3>
-              <p className="text-xs text-zinc-500">Whats the check-in baggage policy for Delta?</p>
+              <p className="text-xs text-zinc-500">
+                Whats the check-in baggage policy for Delta?
+              </p>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:bg-zinc-800 transition-colors cursor-pointer">
               <div className="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center mb-3">
                 <HiSparkles className="w-4 h-4 text-white" />
               </div>
-              <h3 className="text-sm font-medium mb-1.5">Ask about your trip</h3>
-              <p className="text-xs text-zinc-500">Can I cancel my flight to Tokyo?</p>
+              <h3 className="text-sm font-medium mb-1.5">
+                Ask about your trip
+              </h3>
+              <p className="text-xs text-zinc-500">
+                Can I cancel my flight to Tokyo?
+              </p>
             </div>
           </div>
         </div>

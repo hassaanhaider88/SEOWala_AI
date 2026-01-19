@@ -72,7 +72,7 @@ const NavBar = () => {
         href="/"
         className="flex items-center gap-2 text-2xl font-semibold font-serif"
       >
-        TagVion
+        SEOWala
       </Link>
 
       {/* Desktop Nav */}
