@@ -1,5 +1,11 @@
 "use client";
-import React, { useState } from "react";
+
+import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
+
+import { SiLetsencrypt } from "react-icons/si";
+import { TbLayoutDashboard } from "react-icons/tb";
+import { useRouter } from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
 import {
   FiHome,
   FiGlobe,
@@ -9,14 +15,42 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 import { HiSparkles } from "react-icons/hi2";
+import { userDataContext } from "../../store/UserDataContext";
+import SuggestionCardHome from "../../components/SuggestionCardHome";
+import ChatSection from "../../components/ChatSection";
 
 const FlyPerplex = () => {
+  const { userData, setUserData } = useContext(userDataContext);
+  const [UserNameLetter, setUserNameLetter] = useState("");
+  const [ShowLeftBar, setShowLeftBar] = useState(true);
+
+  const router = useRouter();
+  useEffect(() => {
+    if (userData.name == "") {
+      router.push("/");
+    } else {
+      return;
+    }
+  }, [router, userData.name]);
+
+  useEffect(() => {
+    const FirstToLetter = userData.name
+      .trim()
+      .split(/\s+/)
+      .map((word) => word[0].toUpperCase())
+      .join("");
+
+    setUserNameLetter(FirstToLetter);
+  }, [router, userData.name]);
+  console.log(userData);
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <div className="flex h-screen bg-black text-white font-sans">
+    <div className="flex h-screen  text-white font-sans">
       {/* Sidebar */}
-      <div className="w-80 bg-zinc-950 border-r border-zinc-800 flex flex-col">
+      <div
+        className={` ${ShowLeftBar ? "flex" : "hidden"} duration-200 transition-all bg-[#18181B] md:w-[25%] w-62.5 flex flex-col`}
+      >
         {/* Logo */}
         <div className="p-6 flex items-center gap-3">
           <span className="text-lg font-medium">SEOWala</span>
@@ -24,7 +58,10 @@ const FlyPerplex = () => {
 
         {/* New Chat Button */}
         <div className="px-4 mb-6">
-          <button className="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+          <button
+            onClick={() => router.push("/use-ai?service=KeywordGens")}
+            className="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-2.5 px-4 rounded-lg flex items-center duration-200 justify-center gap-2 transition-colors"
+          >
             <span className="text-xl">+</span>
             <span className="text-sm font-medium">New chat</span>
           </button>
@@ -33,15 +70,25 @@ const FlyPerplex = () => {
         {/* Navigation */}
         <nav className="flex-1 px-4">
           <div className="space-y-1">
-            <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white">
+            <button
+              onClick={() => router.push("/")}
+              title="Back To Home"
+              className="w-full flex duration-200 transition-all items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800  text-zinc-400 hover:text-white"
+            >
               <FiHome className="w-5 h-5" />
               <span className="text-sm">Home</span>
             </button>
-            <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white">
-              <FiGlobe className="w-5 h-5" />
-              <span className="text-sm">Discover</span>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg duration-200 transition-all hover:bg-zinc-800  text-zinc-400 hover:text-white"
+            >
+              <TbLayoutDashboard className="w-5 h-5" />
+              <span className="text-sm">Dashboard</span>
             </button>
-            <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white">
+            <button
+              onClick={() => router.push("/full-history")}
+              className="w-full flex duration-200 transition-all items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800  text-zinc-400 hover:text-white"
+            >
               <FiFileText className="w-5 h-5" />
               <span className="text-sm">My history</span>
             </button>
@@ -49,113 +96,84 @@ const FlyPerplex = () => {
         </nav>
 
         {/* Upgrade Section */}
-        <div className="p-4 m-4 bg-linear-to-br from-pink-500/10 to-orange-500/10 border border-pink-500/20 rounded-xl">
-          <h3 className="text-sm font-semibold mb-1">Upgrade to premium</h3>
-          <p className="text-xs text-zinc-400 mb-3">Enjoy premium benefits</p>
-          <button className="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors">
-            Upgrade now
-          </button>
-        </div>
+        {userData.isPro ? (
+          ""
+        ) : (
+          <div className="p-4 m-4 bg-linear-to-br from-pink-500/10 to-orange-500/10 border border-pink-500/20 rounded-xl">
+            <h3 className="text-sm font-semibold mb-1">Upgrade to premium</h3>
+            <p className="text-xs text-zinc-400 mb-3">Enjoy premium benefits</p>
+            <button
+              onClick={() => router.push("/upgrade")}
+              className="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
+            >
+              Upgrade now
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div
+        className={` ${ShowLeftBar ? "sm:w-[75%] w-[30ppx]" : "w-full"} duration-200 transition-all relative min-h-screen flex flex-col`}
+      >
+        <span
+          onClick={() => setShowLeftBar(!ShowLeftBar)}
+          className="absolute cursor-pointer duration-200 transition-all active:scale-105 top-16 left-1"
+        >
+          <TbLayoutSidebarLeftExpand size={30} color="white" />
+        </span>
         {/* Header */}
-        <div className="h-16 border-b border-zinc-800 flex items-center justify-between px-6">
+        <div className="h-16 py-5 flex items-center justify-between px-6">
           <div className="flex items-center gap-2 text-zinc-500">
-            <span className="text-sm">🔒</span>
-            <span className="text-sm">Flyperplex.com</span>
+            <SiLetsencrypt size={15} />
+            <span className="text-sm">End-To-End Encrypted</span>
           </div>
           <div className="flex items-center gap-3">
-            <button className="w-8 h-8 rounded-full hover:bg-zinc-800 flex items-center justify-center">
-              <div className="w-8 h-8 rounded-full bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-medium">
-                U
+            <button className="w-12 h-12 rounded-full hover:bg-zinc-800 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-linear-to-br from-gray-500 via-sky-600 to-blue-500 flex items-center justify-center text-white text-sm font-medium">
+                {UserNameLetter}
               </div>
             </button>
-            <FiChevronDown className="w-4 h-4 text-zinc-400" />
           </div>
         </div>
-
-        {/* Content Area */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 pb-32">
-          {/* Welcome Text */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-light mb-3">
-              Welcome to{" "}
-              <span className="font-semibold bg-linear-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-                FlyPerplex
-              </span>
-            </h1>
-            <p className="text-zinc-400 text-lg">
-              Your personalized flight assistant.
-            </p>
+        <div>
+          <div className="flex-1 min-h-screen flex flex-col items-center justify-center mt-6 px-6 pb-32">
+            {/* Welcome Text */}
+            {/* <SuggestionCardHome /> */}
+            {/* Chat Section */}
+            <ChatSection />
           </div>
 
-          {/* Suggestion Cards */}
-          <div className="grid grid-cols-3 gap-4 max-w-4xl w-full mb-16">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:bg-zinc-800 transition-colors cursor-pointer">
-              <div className="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center mb-3">
-                <HiSparkles className="w-4 h-4 text-white" />
-              </div>
-              <h3 className="text-sm font-medium mb-1.5">Where to next?</h3>
-              <p className="text-xs text-zinc-500">
-                Show me the cheapest flights to London next week.
-              </p>
-            </div>
-
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:bg-zinc-800 transition-colors cursor-pointer">
-              <div className="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center mb-3">
-                <HiSparkles className="w-4 h-4 text-white" />
-              </div>
-              <h3 className="text-sm font-medium mb-1.5">Flight updates</h3>
-              <p className="text-xs text-zinc-500">
-                Whats the check-in baggage policy for Delta?
-              </p>
-            </div>
-
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:bg-zinc-800 transition-colors cursor-pointer">
-              <div className="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center mb-3">
-                <HiSparkles className="w-4 h-4 text-white" />
-              </div>
-              <h3 className="text-sm font-medium mb-1.5">
-                Ask about your trip
-              </h3>
-              <p className="text-xs text-zinc-500">
-                Can I cancel my flight to Tokyo?
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Input Section */}
-        <div className="border-t border-zinc-800 p-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 mb-3">
-              <input
-                type="text"
-                placeholder="Ask about flights..."
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                className="w-full bg-transparent text-white placeholder-zinc-500 outline-none text-base mb-4"
-              />
-              <div className="flex items-center justify-between">
-                <button className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-colors">
-                  <FiPaperclip className="w-4 h-4" />
-                  <span>Attach file</span>
-                </button>
-                <div className="flex items-center gap-3">
-                  <button className="text-zinc-400 hover:text-white text-sm transition-colors">
-                    Select source
+          {/* input place */}
+          <div className=" sticky bottom-0 w-full">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 mb-3">
+                <input
+                  type="text"
+                  placeholder="Ask about flights..."
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="w-full bg-transparent text-white placeholder-zinc-500 outline-none text-base mb-4"
+                />
+                <div className="flex items-center justify-between">
+                  <button className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-colors">
+                    <FiPaperclip className="w-4 h-4" />
+                    <span>Attach file</span>
                   </button>
-                  <button className="w-9 h-9 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors">
-                    <FiSend className="w-4 h-4 text-white" />
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button className="text-zinc-400 hover:text-white text-sm transition-colors">
+                      Select source
+                    </button>
+                    <button className="w-9 h-9 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors">
+                      <FiSend className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
                 </div>
               </div>
+              <p className="text-center text-xs text-zinc-600">
+                FlyPerplex can make mistakes. Check important info.
+              </p>
             </div>
-            <p className="text-center text-xs text-zinc-600">
-              FlyPerplex can make mistakes. Check important info.
-            </p>
           </div>
         </div>
       </div>

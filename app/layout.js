@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "TagVion",
+  title: "SEOWala  || HMK CodeWeb",
   description:
     "A platform that turns simple ideas into powerful tags and optimized content.",
 };
