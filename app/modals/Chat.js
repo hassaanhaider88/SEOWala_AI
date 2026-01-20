@@ -1,40 +1,27 @@
 import mongoose from "mongoose";
-
-const chatMessageSchema = new mongoose.Schema(
+const chatSechma = new mongoose.Schema(
   {
-    role: {
-      type: String,
-      enum: ["user", "seo-wala-ai"],
-      required: true,
-    },
-
-    service: {
-      type: String,
-      enum: ["MetaTags", "KeywordGens", "YtVideoSeo", "MediaPost"],
-      required: true,
-    },
-
-    message: {
+    userRequest: {
       type: String,
       required: true,
-      trim: true,
     },
-
-
+    aiResponse: {
+      type: String,
+      required: true,
+    },
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: "User",
-      required: false,
+      required: true,
+    },
+    serviceUsed: {
+      type: String,
+      required: true,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const ChatMessage =
-  mongoose.models.ChatMessage ||
-  mongoose.model("ChatMessage", chatMessageSchema);
+const ChatModal = mongoose.models.Chat || mongoose.model("Chat", chatSechma);
 
-export default ChatMessage;
-
+export default ChatModal;
