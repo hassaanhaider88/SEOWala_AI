@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SEOWala  || HMK CodeWeb",
+  title: "SEOWalaAI  || HMK CodeWeb",
   description:
     "A platform that turns simple ideas into powerful tags and optimized content.",
 };
@@ -27,9 +27,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased grid-background`}
       >
         <UseUserContext>
-        <NavBar />
-        {children}
-        <Footer />
+          <NavBar />
+          {children}
+          <Footer />
         </UseUserContext>
       </body>
     </html>

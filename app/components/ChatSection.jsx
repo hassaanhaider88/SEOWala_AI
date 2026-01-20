@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+import { BsFillClipboard2CheckFill } from "react-icons/bs";
+import { BsFillClipboard2Fill } from "react-icons/bs";
+import React, { useState } from "react";
 
 const ChatSection = () => {
   const ChatData = [
@@ -60,6 +63,16 @@ const ChatSection = () => {
     },
   ];
 
+  const [CopyLoading, setCopyLoading] = useState(false);
+
+  const hanldeClickClipBoardTextCopy = (text) => {
+    setCopyLoading(true);
+    setTimeout(() => {
+      setCopyLoading(false);
+    }, 1000);
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <div className="w-full overflow-y-auto px-4 py-6 space-y-4">
       {ChatData.map((chat, index) => {
@@ -71,7 +84,7 @@ const ChatSection = () => {
             className={`flex ${isUser ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[75%] sm:max-w-[60%] px-4 py-3 rounded-2xl text-sm leading-relaxed
+              className={`max-w-[75%] overflow-hidden duration-200 transition-all cursor-pointer group relative sm:max-w-[60%] px-4 py-3 rounded-2xl text-sm leading-relaxed
                 ${
                   isUser
                     ? "bg-[#18181B] text-white rounded-br-none"
@@ -84,6 +97,19 @@ const ChatSection = () => {
               </p>
 
               <p>{chat.message}</p>
+              <span
+                onClick={() => hanldeClickClipBoardTextCopy(chat.message)}
+                className="absolute right-0 hidden group-hover:flex top-0 px-3 cursor-pointer bg-[#333333b6] w-fit justify-center duration-200 transition-all items-center  h-[65px]"
+              >
+                {CopyLoading ? (
+                  <BsFillClipboard2CheckFill size={25} />
+                ) : (
+                  <BsFillClipboard2Fill
+                    className="hover:scale-95 active:scale-105 duration-200 transition-all"
+                    size={25}
+                  />
+                )}
+              </span>
             </div>
           </div>
         );
