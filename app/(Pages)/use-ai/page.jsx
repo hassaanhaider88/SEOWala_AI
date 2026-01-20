@@ -184,9 +184,48 @@ const FlyPerplex = () => {
 
                 <div className="flex items-center justify-end">
                   <div className="flex items-center gap-3">
-                    <button className="text-zinc-400 hover:text-white text-sm transition-colors">
-                      Select source
-                    </button>
+                    {/* <select name="Select source" id="Select source">
+                    <option>Select source</option>
+                    <option value="MetaTags">Meta Tags</option>
+                    <option value="KeyWordGen">Keyword Gens</option>
+                    <option value="YtVideoSeo">YT Video SEO</option>
+                    <option value="MediaPost">Media Post</option>
+                  </select> */}
+                    <select
+                      name="source"
+                      id="source"
+                      className="
+    w-full
+    bg-zinc-900
+    text-white
+    border
+    border-zinc-700
+    rounded-lg
+    px-4
+    py-3
+    text-sm
+    outline-none
+    focus:border-zinc-500
+    focus:ring-1
+    focus:ring-zinc-500
+    appearance-none
+    cursor-pointer
+  "
+                    >
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        className="text-zinc-500"
+                      >
+                        Select source
+                      </option>
+                      <option value="MetaTags">Meta Tags</option>
+                      <option value="KeyWordGen">Keyword Generator</option>
+                      <option value="YtVideoSeo">YouTube Video SEO</option>
+                      <option value="MediaPost">Social Media Post</option>
+                    </select>
+
                     <button className="w-9 h-9 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors">
                       <FiSend className="w-4 h-4 text-white" />
                     </button>
