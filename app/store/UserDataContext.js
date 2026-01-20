@@ -9,7 +9,6 @@ export const UseUserContext = ({ children }) => {
     name: "",
     email: "",
     isPro: false,
-    ChatWithAI: [],
     token: "",
   });
 

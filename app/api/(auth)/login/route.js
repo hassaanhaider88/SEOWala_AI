@@ -27,15 +27,14 @@ export async function POST(req, res) {
       expiresIn: "7d",
     });
 
-    let { name: userName, email: userEmail, isPro,ChatCreatedWithAI:userChat } = checkUser;
+    let { name: userName, email: userEmail, isPro } = checkUser;
     return NextResponse.json({
       sucess: true,
       message: "User Log in sucessfully",
       user: {
         name: userName,
         email: userEmail,
-        isPro,
-        ChatCreatedWithAI:userChat,
+        isPro
       },
       token,
     });

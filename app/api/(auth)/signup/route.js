@@ -41,7 +41,6 @@ export async function POST(req) {
       name: userName,
       email: userEmail,
       isPro,
-      ChatCreatedWithAI: userChat,
     } = user;
 
     const res = NextResponse.json({
@@ -51,7 +50,6 @@ export async function POST(req) {
         name: userName,
         email: userEmail,
         isPro,
-        ChatCreatedWithAI: userChat,
       },
       token,
     });

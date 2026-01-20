@@ -175,7 +175,9 @@ const FlyPerplex = () => {
               <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 mb-3">
                 <textarea
                   ref={textareaRef}
-                  placeholder="Ask about flights..."
+                  placeholder="Ask me anything about SEO..."
+                  name="message"
+                  id="message"
                   rows={1}
                   value={inputValue}
                   onChange={handleChange}
@@ -194,17 +196,26 @@ const FlyPerplex = () => {
     text-white border border-zinc-700 rounded-lg  px-2 py-3 text-sm outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 appearance-none cursor-pointer"
                     >
                       <option
-                        value=""
+                        defaultValue="Select source"
                         disabled
-                        selected
                         className="text-zinc-500"
                       >
                         Select source
                       </option>
                       <option value="MetaTags">Website Meta Tags</option>
                       <option value="KeywordGens">Keyword Generator</option>
-                      <option value="YtVideoSeo">YouTube Video SEO</option>
-                      <option value="MediaPost">Social Media Post</option>
+                      <option
+                        disabled={userData.isPro ? false : true}
+                        value="YtVideoSeo"
+                      >
+                        YouTube Video SEO
+                      </option>
+                      <option
+                        disabled={userData.isPro ? false : true}
+                        value="MediaPost"
+                      >
+                        Social Media Post
+                      </option>
                     </select>
 
                     <button

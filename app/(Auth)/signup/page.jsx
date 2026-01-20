@@ -2,7 +2,7 @@
 import { userDataContext } from "../../store/UserDataContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 
 const SignUpPage = () => {
   const router = useRouter();

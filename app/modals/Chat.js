@@ -14,7 +14,7 @@ const chatSechma = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    serviceUser: {
+    serviceUsed: {
       type: String,
       required: true,
     },

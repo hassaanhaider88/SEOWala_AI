@@ -19,7 +19,6 @@ export async function POST(req, res) {
         name: userName,
         email: userEmail,
         isPro: userPro,
-        ChatCreatedWithAI: userChat,
       } = userData;
       return NextResponse.json({
         success: true,
@@ -27,7 +26,6 @@ export async function POST(req, res) {
           name: userName,
           email: userEmail,
           isPro: userPro,
-          ChatCreatedWithAI: userChat,
         },
         token,
         message: "User found",

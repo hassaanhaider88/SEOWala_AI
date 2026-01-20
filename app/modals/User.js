@@ -20,13 +20,6 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    ChatCreatedWithAI: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Chat",
-        default: null,
-      },
-    ],
   },
   { timestamps: true }
 );
