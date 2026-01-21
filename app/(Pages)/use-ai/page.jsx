@@ -40,7 +40,6 @@ const FlyPerplex = () => {
 
     setUserNameLetter(FirstToLetter);
   }, [router, userData.name]);
-  console.log(userData);
   const [inputValue, setInputValue] = useState("");
   // const [inputValue, setInputValue] = useState("");
   const textareaRef = useRef(null);
@@ -55,8 +54,24 @@ const FlyPerplex = () => {
     textarea.style.height = Math.min(textarea.scrollHeight, maxHeight) + "px";
   };
 
-  const handleSendMessage = () => {
-    console.log(inputValue, ServiceSelect);
+  const handleSendMessage = async () => {
+    try {
+      const res = await fetch("/api/use-ai/new-chat", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          userToken: userData.token,
+          message: inputValue,
+          service: ServiceSelect,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
