@@ -6,16 +6,16 @@ const DashboardPage = () => {
   const { userData, setUserData } = useContext(userDataContext);
   const GetLatestData = async () => {
     try {
-      const res = await fetch("/api/getbytoken", {
+      const token = userData.token;
+      const response = await fetch("/api/getbytoken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          token: localStorage.getItem("token"),
-        }),
+        body: JSON.stringify({ token }),
       });
-      const data = await res.json();
+
+      const data = await response.json();
       console.log(data);
       if (!data.success) {
         console.log(data.messsage);

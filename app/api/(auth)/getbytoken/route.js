@@ -8,7 +8,7 @@ export async function POST(req, res) {
     await dbConnect();
     const { token } = await req.json();
     const decode = jwt.verify(token, process.env.JWT_SECRET);
-    const userData = await User.findById(decode.userId).populate('chats');
+    const userData = await User.findById(decode.userId).populate('Chat');
     if (!userData) {
       return NextResponse.json({
         success: false,
@@ -34,6 +34,7 @@ export async function POST(req, res) {
       });
     }
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
       success: false,
       message: "Somthing wents worng on server",

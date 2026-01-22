@@ -17,7 +17,7 @@ export async function POST(req) {
       );
     }
 
-    const userExists = await User.findOne({ email }).populate('chats');
+    const userExists = await User.findOne({ email }).populate('Chat');
     if (userExists) {
       return NextResponse.json(
         { success: false, message: "User already exists" },
