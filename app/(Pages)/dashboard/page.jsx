@@ -1,12 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { userDataContext } from "../../store/UserDataContext";
 import { useContext, useEffect } from "react";
 const DashboardPage = () => {
   const { userData, setUserData } = useContext(userDataContext);
+  const router = useRouter();
   const GetLatestData = async () => {
     try {
-      const token = userData.token;
+      const token = localStorage.getItem("token");
       const response = await fetch("/api/getbytoken", {
         method: "POST",
         headers: {
@@ -26,6 +28,7 @@ const DashboardPage = () => {
         email: data.user.email,
         isPro: data.user.isPro,
         token: data.token,
+        ChatWithAI: data.user.chats,
       });
       // console.log(data);
     } catch (error) {
@@ -36,7 +39,20 @@ const DashboardPage = () => {
     GetLatestData();
   }, []);
 
-  return <div>DashboardPage</div>;
+  return (
+    <div>
+      {userData?.ChatWithAI?.map((chat) => (
+        <h1
+          key={chat._id}
+          onClick={() =>
+            router.push(`/use-ai?service=MetaTags&chatId=${chat._id}`)
+          }
+        >
+          {chat._id}
+        </h1>
+      ))}
+    </div>
+  );
 };
 
 export default DashboardPage;

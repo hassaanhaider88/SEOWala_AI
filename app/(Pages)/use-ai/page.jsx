@@ -10,6 +10,7 @@ import { FiHome, FiFileText, FiSend } from "react-icons/fi";
 import { userDataContext } from "../../store/UserDataContext";
 import SuggestionCardHome from "../../components/SuggestionCardHome";
 import ChatSection from "../../components/ChatSection";
+import FullHistoryPage from "../../components/FullHistorySection";
 
 const UseAIPage = () => {
   const { userData, setUserData } = useContext(userDataContext);
@@ -20,6 +21,7 @@ const UseAIPage = () => {
   const searchParams = useSearchParams();
   const Service = searchParams.get("service");
   const chatId = searchParams.get("chatId");
+  const isHistory = searchParams.get("isHistory");
   const [ServiceSelect, setServiceSelect] = useState(Service);
 
   useEffect(() => {
@@ -134,7 +136,7 @@ const UseAIPage = () => {
               <span className="text-sm">Dashboard</span>
             </button>
             <button
-              onClick={() => router.push("/full-history")}
+              onClick={() => router.push("/use-ai?isHistory=true")}
               className="w-full flex duration-200 transition-all items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-zinc-800  text-zinc-400 hover:text-white"
             >
               <FiFileText className="w-5 h-5" />
@@ -191,6 +193,8 @@ const UseAIPage = () => {
           <div className="flex-1 min-h-screen flex flex-col items-center justify-center mt-6 px-6 pb-32">
             {chatId ? (
               <ChatSection chatId={chatId} reload={reloadChat} />
+            ) : isHistory ? (
+              <FullHistoryPage />
             ) : (
               <SuggestionCardHome />
             )}

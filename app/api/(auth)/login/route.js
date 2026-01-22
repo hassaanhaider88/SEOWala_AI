@@ -9,7 +9,7 @@ export async function POST(req) {
     await dbConnect();
     const { email, password } = await req.json();
     console.log(email, password)
-    const checkUser = await User.findOne({ email }).populate('Chat');
+    const checkUser = await User.findOne({ email }).populate('chats');
     console.log(checkUser);
     if (!checkUser) {
       return NextResponse.json({
