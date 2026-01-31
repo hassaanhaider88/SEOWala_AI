@@ -1,33 +1,37 @@
-export default function MediaPost({ data }) {
+import React from "react";
+
+const MediaPost = ({ data }) => {
+  if (!data) return null;
+
+  const { caption, call_to_action, hashtags = [], tone } = data;
+
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-5">
-      <div>
-        <h3 className="text-sm text-gray-500 font-semibold mb-1">Caption</h3>
-        <p className="text-gray-900 whitespace-pre-line">{data.caption}</p>
+    <div className="w-full flex justify-center ">
+      <div className="bg-[#18181B] text-white rounded-2xl p-6 max-w-2xl shadow-lg">
+        {/* Tone */}
+        {tone && (
+          <p className="text-xs text-gray-400 mb-2 uppercase font-semibold">
+            {tone}
+          </p>
+        )}
+
+        {/* Caption */}
+        {caption && <p className="text-sm text-gray-200 mb-4">{caption}</p>}
+
+        {/* Call to Action */}
+        {call_to_action && (
+          <p className="text-sm text-white font-bold mb-4 bg-gray-800 px-3 py-2 rounded-lg inline-block">
+            {call_to_action}
+          </p>
+        )}
+
+        {/* Hashtags */}
+        {hashtags.length > 0 && (
+          <p className="text-xs text-gray-400">{hashtags.join(" ")}</p>
+        )}
       </div>
-
-      {data.call_to_action && (
-        <div className="bg-green-50 p-4 rounded-xl">
-          <h3 className="text-sm font-semibold text-green-700 mb-1">CTA</h3>
-          <p className="text-green-900 font-medium">{data.call_to_action}</p>
-        </div>
-      )}
-
-      <div>
-        <h3 className="text-sm text-gray-500 font-semibold mb-2">Hashtags</h3>
-        <div className="flex flex-wrap gap-2">
-          {data.hashtags.map((tag, i) => (
-            <span
-              key={i}
-              className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className="text-xs text-gray-400">Tone: {data.tone}</div>
     </div>
   );
-}
+};
+
+export default MediaPost;
