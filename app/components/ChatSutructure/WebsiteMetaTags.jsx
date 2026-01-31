@@ -1,42 +1,54 @@
-export default function WebsiteMetaTags({ data }) {
+import React from "react";
+
+const WebsiteMetaTags = ({ data }) => {
+  if (!data) return null;
+
+  const {
+    meta_title,
+    meta_description,
+    primary_keyword,
+    secondary_keywords = [],
+  } = data;
+
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-5">
-      <div>
-        <h3 className="text-sm text-gray-500 font-semibold">Meta Title</h3>
-        <p className="text-lg font-bold text-gray-900">{data.meta_title}</p>
-      </div>
+    <div className="w-full flex justify-center ">
+      <div className="bg-[#18181B] text-white rounded-2xl p-6 max-w-2xl shadow-lg">
+        {/* Meta Title */}
+        {meta_title && (
+          <h2 className="text-lg font-bold mb-3 border-b border-gray-700 pb-2">
+            {meta_title}
+          </h2>
+        )}
 
-      <div>
-        <h3 className="text-sm text-gray-500 font-semibold">
-          Meta Description
-        </h3>
-        <p className="text-gray-700">{data.meta_description}</p>
-      </div>
+        {/* Meta Description */}
+        {meta_description && (
+          <p className="text-sm text-gray-300 mb-4">{meta_description}</p>
+        )}
 
-      <div>
-        <h3 className="text-sm text-gray-500 font-semibold mb-2">
-          Primary Keyword
-        </h3>
-        <span className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm">
-          {data.primary_keyword}
-        </span>
-      </div>
+        {/* Primary Keyword */}
+        {primary_keyword && (
+          <div className="mb-3">
+            <p className="text-xs font-medium text-gray-400 mb-1">
+              Primary Keyword:
+            </p>
+            <p className="text-sm text-gray-200">{primary_keyword}</p>
+          </div>
+        )}
 
-      <div>
-        <h3 className="text-sm text-gray-500 font-semibold mb-2">
-          Secondary Keywords
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {data.secondary_keywords.map((k, i) => (
-            <span
-              key={i}
-              className="px-3 py-1 bg-gray-100 rounded-full text-sm"
-            >
-              {k}
-            </span>
-          ))}
-        </div>
+        {/* Secondary Keywords */}
+        {secondary_keywords.length > 0 && (
+          <div>
+            <p className="text-xs font-medium text-gray-400 mb-1">
+              Secondary Keywords:
+            </p>
+            <p className="text-sm text-gray-200">
+              {secondary_keywords.join(", ")}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default WebsiteMetaTags;
