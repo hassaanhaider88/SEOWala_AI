@@ -21,14 +21,13 @@ const DashboardPage = () => {
   const { userData, setUserData } = useContext(userDataContext);
   const router = useRouter();
   if (!userData?.name) {
-    router.push("/");
-    return null;
+    return router.push("/");
   }
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUserData({});
-    router.push("/");
+    return router.push("/");
   };
 
   return (

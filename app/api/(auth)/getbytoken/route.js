@@ -8,6 +8,13 @@ export async function POST(req) {
   try {
     await dbConnect();
     const { token } = await req.json();
+    console.log(token)
+    if (!token) {
+      return NextResponse.json({
+        success: false,
+        message: "Token Not Provided",
+      })
+    }
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     const userData = await User.findById(decode.userId).populate("chats");
     if (!userData) {
