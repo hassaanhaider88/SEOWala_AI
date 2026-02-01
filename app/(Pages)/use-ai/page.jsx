@@ -13,7 +13,7 @@ import ChatSection from "../../components/ChatSection";
 import FullHistoryPage from "../../components/FullHistorySection";
 
 const UseAIPage = () => {
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   const [UserNameLetter, setUserNameLetter] = useState("");
   const [ShowLeftBar, setShowLeftBar] = useState(true);
 
@@ -23,6 +23,7 @@ const UseAIPage = () => {
   const chatId = searchParams.get("chatId");
   const isHistory = searchParams.get("isHistory");
   const [ServiceSelect, setServiceSelect] = useState(Service);
+  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     if (userData.name == "") {
@@ -56,7 +57,10 @@ const UseAIPage = () => {
   };
 
   const handleSendMessage = async () => {
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim() || isSending) {
+      return alert("Please Put the Text first...");
+    }
+    setIsSending(true);
 
     try {
       const res = await fetch("/api/use-ai/new-chat", {
@@ -72,6 +76,10 @@ const UseAIPage = () => {
 
       const data = await res.json();
 
+      if (!data.success) {
+        return alert(data.message);
+      }
+
       if (data.success) {
         setInputValue("");
         setReloadChat((prev) => !prev);
@@ -84,6 +92,8 @@ const UseAIPage = () => {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -191,8 +201,12 @@ const UseAIPage = () => {
         </div>
         <div>
           <div className="flex-1 min-h-screen flex flex-col items-center justify-center mt-6 px-6 pb-32">
-            {chatId ? (
-              <ChatSection chatId={chatId} reload={reloadChat} />
+            {chatId || isSending ? (
+              <ChatSection
+                chatId={chatId}
+                reload={reloadChat}
+                isSending={isSending}
+              />
             ) : isHistory ? (
               <FullHistoryPage />
             ) : (

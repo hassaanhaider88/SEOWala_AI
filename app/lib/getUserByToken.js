@@ -1,5 +1,11 @@
+"use client";
+
 export default async function getUserByToken() {
-  const token = localStorage.getItem("token");
+  let token;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
+
   if (!token) return null;
 
   const response = await fetch("/api/getbytoken", {

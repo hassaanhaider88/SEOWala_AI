@@ -17,12 +17,30 @@ export async function POST(req) {
 
         const decodeUser = JWT.verify(userToken, process.env.JWT_SECRET);
         const userId = decodeUser.userId;
+
         if (!userId) {
             return NextResponse.json({
                 success: false,
                 message: "User Is not Authenticated",
             });
         }
+        const UserData = await User.findById(userId);
+        if (!UserData) {
+            return NextResponse.json({
+                success: false,
+                message: "User Not Found..."
+            })
+        }
+
+        if ((!UserData.isPro && serviceUsed == "YtVideoSeo") || (!UserData.isPro && serviceUsed == "MediaPost")) {
+            return NextResponse.json({
+                success: false,
+                message: "Please Subscribe to Pro Version First"
+            })
+        }
+
+
+
 
         if (!chatId) {
             const newChat = await ChatModal.create({
@@ -43,9 +61,7 @@ export async function POST(req) {
             serviceUsed,
         });
 
-        // 3️⃣ Call AI (dummy for now)
         const aiReply = await AIResponse(userMessage, serviceUsed);
-        // const aiReply = `AI response for: ${userMessage}`;
         if (!aiReply) {
             return NextResponse.json({
                 success: false,
