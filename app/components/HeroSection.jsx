@@ -1,3 +1,4 @@
+'use client'
 import { RxVideo } from "react-icons/rx";
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
@@ -28,7 +29,10 @@ const HeroSection = () => {
           <button className="px-8 py-2.5 rounded-full ml-4 transition-all duration-500 bg-white text-black">
             Start Your Free Trial
           </button>
-          <button className="px-8 py-2.5 flex items-center gap-2 rounded-full ml-4 transition-all duration-500 border border-white text-white">
+          <button
+            onClick={() => window.open("https://www.youtube.com/@HMKCodeWeb")}
+            className="px-8 py-2.5 flex items-center gap-2 rounded-full ml-4 transition-all duration-500 border border-white text-white"
+          >
             Watch Demo <RxVideo />
           </button>
         </div>

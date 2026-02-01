@@ -75,16 +75,16 @@ function Footer() {
       <div className="BigText  tracking-tighter w-full text-center text-[300px]  font-bold flex gap-1 justify-center items-center">
         <p
           className="font-bold ext-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#333232]"
-          style={{ "-webkitTextStroke": "3px #D3D3D3" }}
+          style={{ "-webkitTextStroke": "3px" }}
         >
-          SEO{" "}
+          SEO
+          <span
+            className="font-bold  text-transparent"
+            style={{ "-webkiTextStroke": "2px white" }}
+          >
+            WALA
+          </span>
         </p>
-        <h1
-          className="font-bold text-transparent"
-          style={{ "-webkiTextStroke": "2px white" }}
-        >
-          WALA-AI
-        </h1>
       </div>
     </footer>
   );

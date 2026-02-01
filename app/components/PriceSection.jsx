@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MdVerified } from "react-icons/md";
 
 import React from "react";
@@ -10,7 +11,7 @@ const PriceSection = () => {
 
   return (
     <>
-      <div className="px-10" id='price'>
+      <div className="px-10" id="price">
         <div className="Content  max-w-full flex justify-start flex-col items-start p-4 md:p-12 ">
           <div className="py-2 px-4 shadow-2xl rounded-4xl bg-gray-950 w-fit flex gap-3 items-center font-semibold">
             <AiTwotoneStar size={25} /> <p>SEO Price</p>
@@ -116,9 +117,11 @@ const PriceSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full cursor-pointer py-3 rounded-full bg-linear-to-r from-[#686868] to-[#686868a4] duration-200 text-white text-sm hover:opacity-95 transition-opacity">
-                    Get started
-                  </button>
+                  <Link href="/upgrade">
+                    <button className="w-full  cursor-pointer py-3 rounded-full bg-linear-to-r from-[#686868] to-[#686868a4] duration-200 text-white text-sm hover:opacity-95 transition-opacity">
+                      Get started
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}

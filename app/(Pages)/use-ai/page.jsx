@@ -26,7 +26,7 @@ const UseAIPage = () => {
   const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
-    if (userData.name == "") {
+    if (userData?.name == "") {
       router.push("/");
     } else {
       return;
@@ -34,7 +34,7 @@ const UseAIPage = () => {
   }, [router, userData.name]);
 
   useEffect(() => {
-    const FirstToLetter = userData.name
+    const FirstToLetter = userData?.name
       .trim()
       .split(/\s+/)
       .map((word) => word[0]?.toUpperCase())

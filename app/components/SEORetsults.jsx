@@ -12,7 +12,7 @@ const SEORetsults = () => {
           <AiTwotoneStar size={25} /> <p>SEO Results</p>
         </div>
         <h1 className="mb-6  text-transparent bg-clip-text bg-linear-to-r from-[#666] via-[#e6e6e6] to-[#a0a0a0]  font-medium text-3xl sm:text-8xl capitalize text-nowrap tracking-tight mt-4">
-          Proven seo retsults <br /> you can trust
+          Proven SEO retsults <br /> you can trust
         </h1>
         <p className="my-5 text-lg text-gray-400 font-medium">
           Join thousands of satisfied users who have boosted their online sales.{" "}
