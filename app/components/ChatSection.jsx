@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import MarkdownPreview from "@uiw/react-markdown-preview";
-import Markdown from "react-markdown";
 import YtVideoSeo from "./ChatSutructure/YtVideoSeo";
 import KeywordGens from "./ChatSutructure/KeywordGens";
 import MediaPost from "./ChatSutructure/MediaPost";

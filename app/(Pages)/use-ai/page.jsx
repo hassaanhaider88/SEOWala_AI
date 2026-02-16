@@ -33,14 +33,11 @@ const UseAIPage = () => {
     }
   }, [router, userData.name]);
 
-
   useEffect(() => {
-  if (!chatId) return;
+    if (!chatId) return;
 
-  fetch(`/api/use-ai/${chatId}`)
-}, [chatId]);
-
-
+    fetch(`/api/use-ai/${chatId}`);
+  }, [chatId]);
 
   useEffect(() => {
     const FirstToLetter = userData?.name
@@ -254,7 +251,7 @@ const UseAIPage = () => {
                     >
                       <option
                         defaultValue="Select source"
-                        disabled
+                        disabled={isSending}
                         className="text-zinc-500"
                       >
                         Select source
@@ -277,7 +274,7 @@ const UseAIPage = () => {
 
                     <button
                       onClick={handleSendMessage}
-                      className="w-12 h-12 px-4 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors"
+                      className={`w-12 h-12 ${isSending ? "cursor-not-allowed" : "cursor-pointer"} px-4 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors`}
                     >
                       <FiSend className="w-4 h-4 text-white" />
                     </button>

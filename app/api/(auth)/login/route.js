@@ -2,19 +2,21 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../../../modals/User";
+import Chat from "../../../modals/Chat";
 import { dbConnect } from "../../../lib/dbConnect";
 
 export async function POST(req) {
   try {
     await dbConnect();
     const { email, password } = await req.json();
-    const checkUser = await User.findOne({ email }).populate('chats').select("-password");
+    const checkUser = await User.findOne({ email })?.populate('chats');
     if (!checkUser) {
       return NextResponse.json({
         sucess: false,
         message: "User not found",
       });
     }
+
     const checkPass = await bcrypt.compare(password, checkUser.password);
 
     if (!checkPass) {
