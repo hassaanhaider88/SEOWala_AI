@@ -25,7 +25,6 @@ const ServicesMenu = () => {
     },
   ];
   const handleUserRirectToSerives = (service) => {
-    console.log(userData);
     if (userData.name === "") {
       alert("Please Login First");
       router.push("/");

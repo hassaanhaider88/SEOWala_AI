@@ -17,6 +17,9 @@ const SignUpPage = () => {
   });
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if(InputData.password.length < 6){
+      return alert("Password must be greater than 6 characters..")
+    }
     const response = await fetch("/api/signup", {
       method: "POST",
       headers: {

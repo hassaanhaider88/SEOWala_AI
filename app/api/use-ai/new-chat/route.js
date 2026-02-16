@@ -12,7 +12,6 @@ export async function POST(req) {
         await dbConnect();
 
         const { userToken, chatId, userMessage, serviceUsed } = await req.json();
-        console.log(chatId)
         let activeChat = chatId;
 
         const decodeUser = JWT.verify(userToken, process.env.JWT_SECRET);

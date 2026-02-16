@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import ServicesMenu from "./ServicesMenu";
 import { userDataContext } from "../store/UserDataContext";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavBar = () => {
   const router = useRouter();
@@ -19,12 +19,12 @@ const NavBar = () => {
   const [IsUserLogin, setIsUserLogin] = useState(false);
 
   useEffect(() => {
-    if (userData.name != "" || undefined) {
+    if (userData.name != "" && userData.name !== undefined) {
       setIsUserLogin(true);
     } else {
       setIsUserLogin(false);
     }
-  }, [userData.name]);
+  }, [userData.name, PathName]);
 
   useEffect(() => {
     if (
@@ -72,7 +72,7 @@ const NavBar = () => {
         href="/"
         className="flex items-center gap-2 text-2xl font-semibold font-serif"
       >
-        SEOWalaAI 
+        SEOWalaAI
       </Link>
 
       {/* Desktop Nav */}
@@ -93,7 +93,7 @@ const NavBar = () => {
       {/* Desktop Right */}
       <div className="hidden md:flex items-center gap-4">
         <div className="flex gap-3 justify-center items-center">
-          {userData.name != "" || undefined ? (
+          {IsUserLogin ? (
             <CgProfile
               size={34}
               className="cursor-pointer"
@@ -152,7 +152,7 @@ const NavBar = () => {
 
         <ServicesMenu />
         <div className="flex gap-3 justify-center items-center">
-          {userData.name != "" || undefined ? (
+          {IsUserLogin ? (
             <CgProfile
               size={34}
               className="cursor-pointer"

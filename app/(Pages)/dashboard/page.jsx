@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useContext ,useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   FiLogOut,
-  FiSettings,
   FiMessageSquare,
   FiZap,
-  FiTrendingUp,
   FiClock,
-  FiCheckCircle,
   FiArrowRight,
   FiUser,
   FiMail,
@@ -20,13 +17,12 @@ import { userDataContext } from "../../store/UserDataContext";
 const DashboardPage = () => {
   const router = useRouter();
   const { userData, setUserData } = useContext(userDataContext);
- 
-  useEffect(() => {
-     if (!userData?.name) {
-    return router.push("/");
-  }
 
-  }, [userData,router]);
+  useEffect(() => {
+    if (!userData?.name) {
+      return router.push("/");
+    }
+  }, [userData, router]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
