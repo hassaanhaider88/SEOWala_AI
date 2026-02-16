@@ -6,12 +6,18 @@ export async function GET(req, context) {
   await dbConnect();
 
   const { chatId } = await context.params;
-  console.log(chatId);
-
+  if (!chatId) {
+    return NextResponse.json({
+      success: false,
+      message: "Chat Id Not Provided",
+    });
+  }
 
   const messages = await Message.find({
     chatId,
-  }).sort({ createdAt: 1 }).populate("chatId", "userId");
+  })
+    .sort({ createdAt: 1 })
+    .populate("chatId", "userId");
 
   return NextResponse.json(messages);
 }

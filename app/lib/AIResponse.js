@@ -20,7 +20,6 @@ async function ChatWithAI(getSystemPromp, Message) {
 
     },
   });
-  console.log(response)
   if (!response) {
     return null;
   }

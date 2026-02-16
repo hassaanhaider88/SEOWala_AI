@@ -12,7 +12,7 @@ export async function POST(req) {
         await dbConnect();
 
         const { userToken, chatId, userMessage, serviceUsed } = await req.json();
-
+        console.log(chatId)
         let activeChat = chatId;
 
         const decodeUser = JWT.verify(userToken, process.env.JWT_SECRET);
@@ -24,13 +24,16 @@ export async function POST(req) {
                 message: "User Is not Authenticated",
             });
         }
-        const UserData = await User.findById(userId);
+        const UserData = await User.findById(userId).select("-password");
+
+
         if (!UserData) {
             return NextResponse.json({
                 success: false,
                 message: "User Not Found..."
             })
         }
+
 
         if ((!UserData.isPro && serviceUsed == "YtVideoSeo") || (!UserData.isPro && serviceUsed == "MediaPost")) {
             return NextResponse.json({
@@ -39,6 +42,12 @@ export async function POST(req) {
             })
         }
 
+        if (!UserData?.isPro && UserData?.chats.length === 5) {
+            return NextResponse.json({
+                success: false,
+                message: "Please Uprgrade to contiue You Already have 5 chats"
+            })
+        }
 
 
 

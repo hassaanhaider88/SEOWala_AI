@@ -33,6 +33,15 @@ const UseAIPage = () => {
     }
   }, [router, userData.name]);
 
+
+  useEffect(() => {
+  if (!chatId) return;
+
+  fetch(`/api/use-ai/${chatId}`)
+}, [chatId]);
+
+
+
   useEffect(() => {
     const FirstToLetter = userData?.name
       .trim()
@@ -201,7 +210,7 @@ const UseAIPage = () => {
         </div>
         <div>
           <div className="flex-1 min-h-screen flex flex-col items-center justify-center mt-6 px-6 pb-32">
-            {chatId || isSending ? (
+            {chatId ? (
               <ChatSection
                 chatId={chatId}
                 reload={reloadChat}
@@ -212,9 +221,6 @@ const UseAIPage = () => {
             ) : (
               <SuggestionCardHome />
             )}
-            {/* Welcome Text */}
-            {/*  */}
-            {/* Chat Section */}
           </div>
 
           {/* input place */}
