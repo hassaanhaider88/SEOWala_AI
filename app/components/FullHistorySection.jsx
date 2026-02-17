@@ -26,7 +26,7 @@ const FullHistoryPage = () => {
         email: data.user.email,
         isPro: data.user.isPro,
         token: data.token,
-        ChatWithAI: data.user.chats,
+        ChatWithAI: data.user.userChats,
       });
     } catch (error) {
       console.log("Error loading history");

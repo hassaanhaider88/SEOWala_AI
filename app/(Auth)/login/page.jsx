@@ -29,7 +29,7 @@ const LoginPage = () => {
         email: data.user.email,
         isPro: data.user.isPro,
         token: data.token,
-        ChatWithAI: data.chats,
+        ChatWithAI: data.useChats,
       });
       localStorage.setItem("token", data.token);
     }

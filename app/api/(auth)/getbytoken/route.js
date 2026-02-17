@@ -29,7 +29,7 @@ export async function POST(req) {
         name: userName,
         email: userEmail,
         isPro: userPro,
-        chats,
+        userChats,
       } = userData;
       return NextResponse.json({
         success: true,
@@ -37,7 +37,7 @@ export async function POST(req) {
           name: userName,
           email: userEmail,
           isPro: userPro,
-          chats,
+          userChats,
         },
         token,
         message: "User found",

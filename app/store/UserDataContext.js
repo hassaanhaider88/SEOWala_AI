@@ -21,7 +21,7 @@ export const UseUserContext = ({ children }) => {
           name: data.user.name,
           email: data.user.email,
           isPro: data.user.isPro,
-          ChatWithAI: data.user.chats,
+          ChatWithAI: data.user.userChats,
           token: data.token,
         });
       } else {

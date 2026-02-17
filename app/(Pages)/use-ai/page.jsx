@@ -22,7 +22,7 @@ const UseAIPage = () => {
   const Service = searchParams.get("service");
   const chatId = searchParams.get("chatId");
   const isHistory = searchParams.get("isHistory");
-  const [ServiceSelect, setServiceSelect] = useState(Service);
+  const [ServiceSelect, setServiceSelect] = useState(Service ? Service : "KeywordGens");
   const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {

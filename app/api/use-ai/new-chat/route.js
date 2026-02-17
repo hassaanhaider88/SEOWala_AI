@@ -41,7 +41,7 @@ export async function POST(req) {
             })
         }
 
-        if (!UserData?.isPro && UserData?.chats.length === 5) {
+        if (!UserData?.isPro && UserData?.userChats?.length === 5) {
             return NextResponse.json({
                 success: false,
                 message: "Please Uprgrade to contiue You Already have 5 chats"
@@ -57,7 +57,7 @@ export async function POST(req) {
             });
             activeChat = newChat._id;
             await User.findByIdAndUpdate(userId, {
-                $addToSet: { chats: activeChat },
+                $addToSet: { userChats: activeChat },
             });
         }
 
