@@ -20,9 +20,9 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    chats: [
+    userChats: [
       {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Chat",
       },
     ]
