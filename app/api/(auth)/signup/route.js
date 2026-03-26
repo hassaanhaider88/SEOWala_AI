@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { dbConnect } from "../../../lib/dbConnect";
 import User from "../../../modals/User";
+import Chat from "../../../modals/Chat";
+
 
 export async function POST(req) {
   try {
@@ -17,7 +19,7 @@ export async function POST(req) {
       );
     }
 
-    const userExists = await User.findOne({ email }).populate('userChats');
+    const userExists = await User.findOne({ email });
     if (userExists) {
       return NextResponse.json(
         { success: false, message: "User already exists" },
