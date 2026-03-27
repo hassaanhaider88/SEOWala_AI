@@ -1,10 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import YtVideoSeo from "./ChatSutructure/YtVideoSeo";
-import KeywordGens from "./ChatSutructure/KeywordGens";
-import MediaPost from "./ChatSutructure/MediaPost";
-import WebsiteMetaTags from "./ChatSutructure/WebsiteMetaTags";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 import {
   BsFillClipboard2CheckFill,
   BsFillClipboard2Fill,
@@ -77,15 +74,25 @@ const ChatSection = ({ chatId, reload }) => {
               </div>
             ) : (
               <div>
-                {msg.serviceUsed == "YtVideoSeo" ? (
-                  <YtVideoSeo data={JSON.parse(msg.content)} />
-                ) : msg.serviceUsed == "KeywordGens" ? (
-                  <KeywordGens data={JSON.parse(msg.content)} />
-                ) : msg.serviceUsed == "MediaPost" ? (
-                  <MediaPost data={JSON.parse(msg.content)} />
-                ) : (
-                  <WebsiteMetaTags data={JSON.parse(msg.content)} />
-                )}
+                <div className="w-full relative mb-1">
+                  <p className="text-[10px] opacity-70">
+                    {isUser ? "You" : "SEO Wala AI"} • {msg.serviceUsed}
+                  </p>
+                  <span
+                    onClick={() => handleCopy(msg.content, index)}
+                    className="absolute right-5 bottom-1  cursor-pointer"
+                  >
+                    {copyIndex === index ? (
+                    <BsFillClipboard2CheckFill />
+                     ) : ( 
+                    <BsFillClipboard2Fill />
+                    )}
+                  </span>
+                </div>
+                <MarkdownPreview
+                  source={msg.content}
+                  style={{ padding: 20 }}
+                />
               </div>
             )}
           </div>

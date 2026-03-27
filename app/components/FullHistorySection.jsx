@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { FiDelete } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { userDataContext } from "../store/UserDataContext";
 import { useContext, useEffect } from "react";
+import { toast } from "next-toast";
 
 const FullHistoryPage = () => {
   const { userData, setUserData } = useContext(userDataContext);
@@ -30,6 +32,7 @@ const FullHistoryPage = () => {
       });
     } catch (error) {
       console.log("Error loading history");
+      toast.error("Error loading history");
     }
   };
 
@@ -49,13 +52,14 @@ const FullHistoryPage = () => {
         const data = await Res.json();
         if (data.success) {
           GetLatestData();
-          alert("Chat Deleted Successfully");
+          toast.success("Chat Deleted Successfully");
           return;
         } else {
-          alert("Something Went Wrong");
+          toast.error(data.message || "Something went wrong");
         }
       } catch (error) {
         console.log(error);
+        toast.error("Something went wrong");
       }
     }
   };
