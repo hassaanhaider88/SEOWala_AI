@@ -8,18 +8,24 @@ export default async function getUserByToken() {
 
   if (!token) return null;
 
-  const response = await fetch("/api/getbytoken", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ token }),
-  });
+  try {
+    const response = await fetch("/api/getbytoken", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
+    });
 
-  const data = await response.json();
-  if (data.success) {
-    return data;
-  } else {
-    return null;
+    const data = await response.json();
+    if (data.success) {
+      return data;
+    } else {
+      return null;
+
+    }
+  } catch (error) {
+    console.log(error)
+    return null
   }
 }

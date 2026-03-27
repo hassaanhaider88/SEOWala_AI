@@ -25,6 +25,15 @@ export const UseUserContext = ({ children }) => {
           token: data.token,
         });
       } else {
+        localStorage.clear();
+        localStorage.removeItem("token");
+        setUserData({
+          name: "",
+          email: "",
+          isPro: false,
+          ChatWithAI: [],
+          token: ""
+        })
         return;
       }
     }
