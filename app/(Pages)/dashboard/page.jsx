@@ -13,6 +13,7 @@ import {
   FiCalendar,
 } from "react-icons/fi";
 import { userDataContext } from "../../store/UserDataContext";
+import { toast } from "next-toast";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -25,9 +26,20 @@ const DashboardPage = () => {
   }, [userData, router]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUserData({});
-    return router.push("/");
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      localStorage.removeItem("token");
+      setUserData({
+        name: "",
+        email: "",
+        isPro: false,
+        token: "",
+      });
+      toast.success("Logged out successfully");
+      router.push("/");
+    } else {
+      return;
+    }
   };
 
   return (

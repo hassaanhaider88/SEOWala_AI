@@ -10,7 +10,7 @@ import {
   BsFillClipboard2Fill,
 } from "react-icons/bs";
 
-const ChatSection = ({ chatId, reload, isSending }) => {
+const ChatSection = ({ chatId, reload }) => {
   const [messages, setMessages] = useState([]);
   const [copyIndex, setCopyIndex] = useState(null);
 
@@ -31,7 +31,7 @@ const ChatSection = ({ chatId, reload, isSending }) => {
   useEffect(() => {
     const el = document.getElementById("chat-end");
     el?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isSending]);
+  }, [messages]);
 
   const handleCopy = (text, index) => {
     navigator.clipboard.writeText(text);
@@ -92,18 +92,7 @@ const ChatSection = ({ chatId, reload, isSending }) => {
         );
       })}
 
-      {isSending && (
-        <div className="flex justify-start">
-          <div className="bg-zinc-800 px-4 py-3 rounded-2xl rounded-bl-none text-sm flex items-center gap-2">
-            <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" />
-            <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce delay-150" />
-            <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce delay-300" />
-            <span className="text-zinc-400 text-xs">AI is thinking...</span>
-          </div>
-        </div>
-      )}
       <div id="chat-end" />
-
     </div>
   );
 };

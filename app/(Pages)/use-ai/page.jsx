@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-
+/* eslint-disable @next/next/no-img-element */
+import { BiLoaderCircle } from "react-icons/bi";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { SiLetsencrypt } from "react-icons/si";
 import { TbLayoutDashboard } from "react-icons/tb";
@@ -11,6 +11,7 @@ import { userDataContext } from "../../store/UserDataContext";
 import SuggestionCardHome from "../../components/SuggestionCardHome";
 import ChatSection from "../../components/ChatSection";
 import FullHistoryPage from "../../components/FullHistorySection";
+import { toast } from "next-toast";
 
 const UseAIPage = () => {
   const { userData } = useContext(userDataContext);
@@ -22,8 +23,9 @@ const UseAIPage = () => {
   const Service = searchParams.get("service");
   const chatId = searchParams.get("chatId");
   const isHistory = searchParams.get("isHistory");
-  const [ServiceSelect, setServiceSelect] = useState(Service ? Service : "KeywordGens");
-  const [isSending, setIsSending] = useState(false);
+  const [ServiceSelect, setServiceSelect] = useState(
+    Service ? Service : "KeywordGens",
+  );
 
   useEffect(() => {
     if (userData?.name == "") {
@@ -50,6 +52,8 @@ const UseAIPage = () => {
   }, [router, userData.name]);
   const [inputValue, setInputValue] = useState("");
   const [reloadChat, setReloadChat] = useState(false);
+  const [chatLoadingState, setchatLoadingState] = useState(false);
+
   const textareaRef = useRef(null);
 
   const handleChange = (e) => {
@@ -63,12 +67,12 @@ const UseAIPage = () => {
   };
 
   const handleSendMessage = async () => {
-    if (!inputValue.trim() || isSending) {
+    if (!inputValue.trim()) {
       return alert("Please Put the Text first...");
     }
-    setIsSending(true);
-
     try {
+      setchatLoadingState(true);
+
       const res = await fetch("/api/use-ai/new-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,11 +83,9 @@ const UseAIPage = () => {
           serviceUsed: ServiceSelect,
         }),
       });
-
       const data = await res.json();
-
       if (!data.success) {
-        return alert(data.message);
+        return toast.error(data.message || "Something went wrong");
       }
 
       if (data.success) {
@@ -99,7 +101,7 @@ const UseAIPage = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      setIsSending(false);
+      setchatLoadingState(false);
     }
   };
 
@@ -210,8 +212,8 @@ const UseAIPage = () => {
             {chatId ? (
               <ChatSection
                 chatId={chatId}
+                chatLoadingState={chatLoadingState}
                 reload={reloadChat}
-                isSending={isSending}
               />
             ) : isHistory ? (
               <FullHistoryPage />
@@ -251,7 +253,7 @@ const UseAIPage = () => {
                     >
                       <option
                         defaultValue="Select source"
-                        disabled={isSending}
+                        disabled={chatLoadingState}
                         className="text-zinc-500"
                       >
                         Select source
@@ -274,9 +276,13 @@ const UseAIPage = () => {
 
                     <button
                       onClick={handleSendMessage}
-                      className={`w-12 h-12 ${isSending ? "cursor-not-allowed" : "cursor-pointer"} px-4 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors`}
+                      className={`w-12 h-12 ${chatLoadingState ? "cursor-not-allowed" : "cursor-pointer"} px-4 bg-zinc-700 hover:bg-zinc-600 rounded-full flex items-center justify-center transition-colors`}
                     >
-                      <FiSend className="w-4 h-4 text-white" />
+                      {chatLoadingState ? (
+                        <BiLoaderCircle className="w-4 h-4 animate-spin  cursor-not-allowed" />
+                      ) : (
+                        <FiSend className="w-4 h-4 text-white" />
+                      )}
                     </button>
                   </div>
                 </div>
