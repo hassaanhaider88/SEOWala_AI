@@ -3,35 +3,48 @@ import { userDataContext } from "../../store/UserDataContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "next-toast";
 
 const LoginPage = () => {
   const router = useRouter();
 
   const { userData, setUserData } = useContext(userDataContext);
+  const [LoadingLogin, setLoadingLogin] = useState(false);
   const [InputData, setInputData] = useState({
     email: "",
     password: "",
   });
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(InputData),
-    });
-
-    const data = await response.json();
-    if (data.sucess) {
-      setUserData({
-        name: data.user.name,
-        email: data.user.email,
-        isPro: data.user.isPro,
-        token: data.token,
-        ChatWithAI: data.useChats,
+    try {
+      setLoadingLogin(true);
+      e.preventDefault();
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(InputData),
       });
-      localStorage.setItem("token", data.token);
+
+      const data = await response.json();
+      if (data.sucess) {
+        setUserData({
+          name: data.user.name,
+          email: data.user.email,
+          isPro: data.user.isPro,
+          token: data.token,
+          ChatWithAI: data.useChats,
+        });
+        toast.success("Login Successfully");
+        localStorage.setItem("token", data.token);
+      } else {
+        toast.error(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    } finally {
+      setLoadingLogin(false);
     }
   };
 
@@ -78,10 +91,13 @@ const LoginPage = () => {
           required
         />
         <button
+          disabled={LoadingLogin}
           type="submit"
-          className="w-fit relative left-1/2 -translate-x-1/2 py-3 px-8 font-semibold mb-3 bg-white hover:bg-gray-300 text-black active:scale-95 transition rounded-full"
+          className={`w-fit relative left-1/2 -translate-x-1/2 py-3 px-8 font-semibold mb-3 bg-white hover:bg-gray-300 ${
+            LoadingLogin && "cursor-not-allowed"
+          } text-black active:scale-95 transition rounded-full`}
         >
-          Log in
+          {LoadingLogin ? "Logging In..." : "Log In"}
         </button>
         <p className="text-center mt-4">
           Don&apos;t have an account?{" "}

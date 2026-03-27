@@ -4,7 +4,8 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { UseUserContext } from "./store/UserDataContext";
 import { UserChatProvider } from "./store/UseChatData";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { NextToast} from "next-toast"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,13 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased grid-background`}
       >
         <UserChatProvider>
-        <UseUserContext>
-          <NavBar />
-          {children}
-          <Analytics />
-          <Footer />
-        </UseUserContext>
+          <UseUserContext>
+            <NavBar />
+            {children}
+            <NextToast />
+            <Analytics />
+            <Footer />
+          </UseUserContext>
         </UserChatProvider>
 
       </body>

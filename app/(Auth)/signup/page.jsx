@@ -2,12 +2,14 @@
 import { userDataContext } from "../../store/UserDataContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { toast } from "next-toast";
 
 const SignUpPage = () => {
   const router = useRouter();
 
   let { userData, setUserData } = useContext(userDataContext);
+  const [LoadingSignIn, setLoadingSignIn] = useState(false);
 
   const [InputData, setInputData] = useState({
     name: "",
@@ -15,34 +17,44 @@ const SignUpPage = () => {
     password: "",
     acceptTerms: false,
   });
+
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if(InputData.password.length < 6){
-      return alert("Password must be greater than 6 characters..")
-    }
-    const response = await fetch("/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: InputData.name,
-        email: InputData.email,
-        password: InputData.password,
-      }),
-    });
-    const data = await response.json();
-    if (data.success) {
-      localStorage.setItem("token", data.token);
-      setUserData({
-        name: data.user.name,
-        email: data.user.email,
-        isPro: data.user.isPro,
-        token: data.token,
+    try {
+      setLoadingSignIn(true);
+      e.preventDefault();
+      if (InputData.password.length < 6) {
+        return alert("Password must be greater than 6 characters..");
+      }
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: InputData.name,
+          email: InputData.email,
+          password: InputData.password,
+        }),
       });
-      router.push("/dashboard");
-    } else {
-      alert(data.message);
+      const data = await response.json();
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        toast.success("Account created successfully");
+        setUserData({
+          name: data.user.name,
+          email: data.user.email,
+          isPro: data.user.isPro,
+          token: data.token,
+        });
+        router.push("/dashboard");
+      } else {
+        toast.error(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    } finally {
+      setLoadingSignIn(false);
     }
   };
 
@@ -119,16 +131,17 @@ const SignUpPage = () => {
           />
           <label
             htmlFor="acceptTerms"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="ml-2 lowercase text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             I accept the terms and conditions.
           </label>
         </div>
         <button
+          disabled={LoadingSignIn}
           type="submit"
-          className="w-fit relative left-1/2 -translate-x-1/2 py-3 px-8 font-semibold mb-3 bg-white hover:bg-gray-300 text-black active:scale-95 transition rounded-full"
+          className={`${LoadingSignIn ? "cursor-not-allowed" : ""} w-fit mt-3 relative left-1/2 -translate-x-1/2 py-3 px-8 font-semibold mb-3 bg-white hover:bg-gray-300 text-black active:scale-95 transition rounded-full`}
         >
-          Create One
+          {LoadingSignIn ? "Creating..." : "Create One"}
         </button>
         <p className="text-center mt-4">
           Have an account already!
