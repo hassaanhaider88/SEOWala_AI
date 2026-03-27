@@ -27,13 +27,6 @@ export const UseUserContext = ({ children }) => {
       } else {
         localStorage.clear();
         localStorage.removeItem("token");
-        setUserData({
-          name: "",
-          email: "",
-          isPro: false,
-          ChatWithAI: [],
-          token: ""
-        })
         return;
       }
     }

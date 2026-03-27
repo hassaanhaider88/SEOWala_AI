@@ -70,6 +70,7 @@ export async function POST(req) {
         });
 
         const aiReply = await AIResponse(userMessage, serviceUsed);
+
         if (!aiReply) {
             return NextResponse.json({
                 success: false,
